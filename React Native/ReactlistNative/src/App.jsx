@@ -1,26 +1,29 @@
 import { StatusBar } from "expo-status-bar";
-import {  Text, View } from "react-native";
+import { View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Styles } from "./Styles";
-import { Header } from "./componets/header/Header";
-import { FormTask } from "./componets/formTask/FormTask";
+import { Header} from "./componets/header/Header.jsx";
+import { FormTask } from "./componets/frmCadTask/FormTask.jsx";
+import { TaskList } from "./componets/taskList/TaskList";
 
+import { TaskProvider } from "./context/TaskContext";
 
 function App() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={Styles.safeArea}>
-        <Header />
-        <FormTask />
-        <View style={Styles.container}>
-          <Text>My App</Text>
-          <StatusBar style="auto" />
-        </View>
+        <TaskProvider>
+          <View style={Styles.container}>
+            <Header />
+            <FormTask />
+            <TaskList />
+
+            <StatusBar style="auto" />
+          </View>
+        </TaskProvider>
       </SafeAreaView>
     </SafeAreaProvider>
   );
 }
-
-
 
 export default App;
